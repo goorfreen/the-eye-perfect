@@ -28,6 +28,7 @@
             c.innerHTML += `<div class="user-msg"><b>Tu:</b> ${msg}</div>`;
             e.classList.add('focus'); i.value = ''; c.scrollTop = c.scrollHeight;
             try {
+                // Cheia este integrată aici
                 const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyA7CTYj06_Us7r0Lf4Rs91gHyPW5VFJCr4', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -36,7 +37,7 @@
                 const data = await res.json();
                 const reply = data.candidates[0].content.parts[0].text;
                 c.innerHTML += `<div class="eye-msg"><b>EYE:</b> ${reply}</div>`;
-            } catch (err) { c.innerHTML += `<div style="color:red">Sistem blocat.</div>`; }
+            } catch (err) { c.innerHTML += `<div style="color:red; text-align:center; font-size:10px;">Sistem blocat. Verifică cheia API.</div>`; }
             e.classList.remove('focus'); c.scrollTop = c.scrollHeight;
         }
         document.getElementById('input').addEventListener('keypress', (e) => { if(e.key === 'Enter') send(); });
